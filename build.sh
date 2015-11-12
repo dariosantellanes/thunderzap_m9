@@ -28,9 +28,9 @@ export CROSS_COMPILE="/home/varunchitre15/cm12.1/prebuilts/gcc/linux-x86/aarch64
 export ARCH=arm64
 export SUBARCH=arm64
 export KBUILD_BUILD_USER="varun.chitre15"
-export KBUILD_BUILD_HOST="Monster-Machine"
+export KBUILD_BUILD_HOST="EroticBox"
 STRIP="/home/varunchitre15/cm12.1/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin/aarch64-linux-android-strip"
-MODULES_DIR=$KERNEL_DIR/../modulesTomato
+MODULES_DIR=$KERNEL_DIR/../modulesHima
 
 compile_kernel ()
 {
@@ -38,7 +38,7 @@ echo -e "$blue***********************************************"
 echo "          Compiling ThunderZap kernel          "
 echo -e "***********************************************$nocol"
 rm -f $KERN_IMG
-make cyanogenmod_tomato-64_defconfig -j12
+make hima_tz_defconfig -j12
 make Image -j12
 make dtbs -j12
 make modules -j12
@@ -69,7 +69,7 @@ make ARCH=arm64 -j8 clean mrproper
 rm -rf $KERNEL_DIR/arch/arm/boot/dt.img
 ;;
 dt)
-make cyanogenmod_tomato-64_defconfig -j12
+make hima_tz_defconfig -j12
 make dtbs -j12
 $DTBTOOL -2 -o $KERNEL_DIR/arch/arm64/boot/dt.img -s 2048 -p $KERNEL_DIR/scripts/dtc/ $KERNEL_DIR/arch/arm/boot/dts/
 ;;
