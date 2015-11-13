@@ -36,6 +36,10 @@
 #include <linux/wakelock.h>
 #include <linux/qpnp/qpnp-adc.h>
 
+#ifdef CONFIG_THUNDERCHARGE_CONTROL
+#include "thundercharge_control.h"
+#endif
+
 #ifdef CONFIG_HTC_BATT_8960
 #include <linux/of_fdt.h>
 #include <linux/libfdt_env.h>
@@ -4349,7 +4353,11 @@ int pmi8994_set_pwrsrc_and_charger_enable(enum htc_power_source_type src,
 			if (usb_supply_type == POWER_SUPPLY_TYPE_USB_CDP)
 				mA = USB_MA_1000;
 			else
+#ifdef CONFIG_THUNDERCHARGE_CONTROL
+				mA = custom_usb_current;
+#else
 				mA = USB_MA_500;
+#endif
 		} else {
 			mA = USB_MA_1000;
 		}
@@ -4363,6 +4371,9 @@ int pmi8994_set_pwrsrc_and_charger_enable(enum htc_power_source_type src,
 			mA = USB_MA_1000;
 		else
 			mA = USB_MA_1500;
+#ifdef CONFIG_THUNDERCHARGE_CONTROL
+			mA = custom_ac_current;
+#endif
 		break;
     case HTC_PWR_SOURCE_TYPE_MHL_UNKNOWN:
 		mA = USB_MA_0;
@@ -4393,6 +4404,7 @@ int pmi8994_set_pwrsrc_and_charger_enable(enum htc_power_source_type src,
 	rc = smbchg_set_thermal_limited_usb_current_max(the_chip, mA);
 	if (rc < 0)
 		pr_err("Couldn't set usb current rc = %d\n", rc);
+	pr_info("thundercharge: pulling %d mA\n", mA);
 	mutex_unlock(&the_chip->current_change_lock);
 
 	if (HTC_PWR_SOURCE_TYPE_BATT == src)

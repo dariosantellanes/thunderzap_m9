@@ -526,6 +526,12 @@ config HTC_BATT_8960
 	default n
 	bool "HTC battery driver for 8960"
 
+config THUNDERCHARGE_CONTROL
+     bool "Enable ThunderCharge Charging Current Controlling mechanism"
+     depends on QPNP_SMBCHARGER
+     help
+       Say Y here to enable ability to adjust charger current
+
 config QPNP_VM_BMS
 	tristate "QPNP Voltage-Mode Battery Monitoring System driver"
 	depends on SPMI

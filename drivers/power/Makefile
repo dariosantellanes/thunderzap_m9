@@ -66,6 +66,7 @@ obj-$(CONFIG_QPNP_FG)		+= qpnp-fg-htc.o
 obj-$(CONFIG_QPNP_CHARGER)	+= qpnp-charger.o
 obj-$(CONFIG_QPNP_LINEAR_CHARGER)	+= qpnp-linear-charger.o
 obj-$(CONFIG_QPNP_SMBCHARGER)	+= qpnp-smbcharger-htc.o
+obj-$(CONFIG_THUNDERCHARGE_CONTROL) += thundercharge_control.o
 obj-$(CONFIG_HTC_BATT_CORE) += htc_battery_core.o
 obj-$(CONFIG_HTC_BATT_8960) += htc_battery_8960.o
 obj-$(CONFIG_CHARGER_SMB347)	+= smb347-charger.o
