@@ -973,7 +973,7 @@ static ssize_t qpnp_hap_voltage_level_show(struct device *dev,
 	struct qpnp_hap *hap = container_of(timed_dev, struct qpnp_hap,
 					 timed_dev);
 
-	return snprintf(buf, PAGE_SIZE, "[VIB] voltage input:%dmV\n", hap->vmax_mv);
+	return snprintf(buf, PAGE_SIZE, "%d\n", hap->vmax_mv);
 }
 
 static ssize_t qpnp_hap_voltage_level_store(struct device *dev,
